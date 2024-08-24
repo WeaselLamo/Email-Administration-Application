@@ -7,7 +7,7 @@ public class Email {
     private String password;
     private String departmentName;
     private String email;
-    private int mailCapacity;
+    private int mailCapacity=500;
     private int defaultPasswordLength = 10;
     private String alternateEmail;
     private String companySuffix = "mangesh.com";
@@ -16,25 +16,22 @@ public class Email {
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("Email Created: " + this.firstName + " " + this.lastName);
-
+        
         // Call a method asking for the department - return the department
         this.departmentName = setDepartment();
-        System.out.println("DEPARTMENT: " + this.departmentName);
-
+        
         // Call a method that returns a Random Password
         this.password = randomPassword(8);
         System.out.println("Your Password is: " + this.password);
         
         //Combine elements to generate email
         email=firstName.toLowerCase()+"."+lastName.toLowerCase()+"@"+departmentName +"."+ companySuffix;
-        System.out.println("Your email is : "+ email);
         
     }
 
     // Ask for the department
     private String setDepartment() {
-        System.out.print("Enter the Code\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None\nEnter Department Code: ");
+        System.out.print("New worker: "+firstName + ".\nEnter the Code\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None\nEnter Department Code: ");
         Scanner in = new Scanner(System.in);
         int depChoice = in.nextInt();
 
@@ -59,4 +56,31 @@ public class Email {
         }
         return new String(password);
     }
+    
+    //Set Mail Capacity
+     public void setMailCapacity(int capacity) {
+    	 this.mailCapacity = capacity;
+     }
+     
+     //Set Alternate Email
+     public void setAlternateEmail(String altEmail) {
+    	 this.alternateEmail = altEmail;
+     }
+     
+     
+     //Change Password
+     public void changePassword(String password) {
+    	 this.password = password;
+     }
+     
+     public int getMailCapacity() {return mailCapacity;}
+     public String getAlternateEmail() {return alternateEmail;}
+     public String getPassword() {return password;}
+     
+     public String showInfo() {
+    	 return "DISPLAY NAME: "+ firstName + " " + lastName +
+    			 "\nCOMPANY EMAIL: " + email +
+    			 "\nMAILBOX CAPACITY: "+ mailCapacity + "mb";
+     }
+     
 }
